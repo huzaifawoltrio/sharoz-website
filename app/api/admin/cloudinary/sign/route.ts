@@ -1,5 +1,5 @@
 import { decrypt, getSessionCookieValue } from "@/lib/session";
-import { getUploadSignature } from "@/lib/cloudinary";
+import { getUploadSignature, getCloudinaryPublicConfig } from "@/lib/cloudinary";
 
 /**
  * Signs a direct-to-Cloudinary upload so the browser can POST an image
@@ -16,11 +16,17 @@ export async function POST(request: Request) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
-  const apiKey = process.env.CLOUDINARY_API_KEY;
-  if (!cloudName || !apiKey) {
+  const { cloudName, apiKey, hasSecret } = getCloudinaryPublicConfig();
+  if (!cloudName || !apiKey || !hasSecret) {
+    console.error(
+      "Cloudinary env vars missing on the server:",
+      { hasCloudName: !!cloudName, hasApiKey: !!apiKey, hasSecret }
+    );
     return Response.json(
-      { error: "Cloudinary is not configured on the server" },
+      {
+        error:
+          "Cloudinary is not configured on the server. Check CLOUDINARY_CLOUD_NAME / CLOUDINARY_API_KEY / CLOUDINARY_API_SECRET in your deployment's environment variables.",
+      },
       { status: 500 }
     );
   }
