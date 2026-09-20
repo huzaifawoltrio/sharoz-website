@@ -14,7 +14,7 @@ export default function RichTextView({
 }) {
   return (
     <div
-      className={`prose prose-stone max-w-none ${className ?? ""}`}
+      className={`prose max-w-none ${className ?? ""}`}
       dangerouslySetInnerHTML={{ __html: sanitizeHtml(html) }}
     />
   );

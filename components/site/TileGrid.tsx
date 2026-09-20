@@ -13,7 +13,7 @@ export default function TileGrid({
   return (
     <div className="mx-auto max-w-6xl px-6 py-16">
       {heading && (
-        <h2 className="mb-8 font-[family-name:var(--font-display)] text-2xl text-stone-800 sm:text-3xl">
+        <h2 className="mb-8 font-[family-name:var(--font-display)] text-2xl text-foreground sm:text-3xl">
           {heading}
         </h2>
       )}

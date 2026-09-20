@@ -14,7 +14,7 @@ export default function PostCard({ post }: { post: PostLean }) {
 
   return (
     <Link href={`${basePath}/${post.slug}`} className="group block">
-      <div className="relative aspect-[3/2] overflow-hidden bg-stone-100">
+      <div className="relative aspect-[3/2] overflow-hidden bg-surface">
         <CmsImage
           src={post.coverImage?.url}
           alt={post.title}
@@ -23,12 +23,12 @@ export default function PostCard({ post }: { post: PostLean }) {
         />
       </div>
       <div className="mt-3">
-        {date && <p className="text-xs text-stone-500">{date}</p>}
-        <h3 className="mt-1 font-[family-name:var(--font-display)] text-lg text-stone-800">
+        {date && <p className="text-xs text-muted">{date}</p>}
+        <h3 className="mt-1 font-[family-name:var(--font-display)] text-lg text-foreground">
           {post.title}
         </h3>
         {post.excerpt && (
-          <p className="mt-1 line-clamp-2 text-sm text-stone-600">
+          <p className="mt-1 line-clamp-2 text-sm text-muted">
             {post.excerpt}
           </p>
         )}

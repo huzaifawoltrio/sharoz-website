@@ -9,7 +9,7 @@ export default async function AboutPage() {
 
   return (
     <div className="mx-auto max-w-4xl px-6 py-16">
-      <h1 className="font-[family-name:var(--font-display)] text-3xl text-stone-800">
+      <h1 className="font-[family-name:var(--font-display)] text-3xl text-foreground">
         {about.heading}
       </h1>
 
@@ -29,7 +29,7 @@ export default async function AboutPage() {
       {about.gallery.length > 0 && (
         <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3">
           {about.gallery.map((img, i) => (
-            <div key={i} className="relative aspect-square overflow-hidden rounded bg-stone-100">
+            <div key={i} className="relative aspect-square overflow-hidden rounded bg-surface">
               <CmsImage src={img.url} alt="" sizes="240px" className="object-cover" />
             </div>
           ))}

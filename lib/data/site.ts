@@ -5,6 +5,7 @@ import AboutPage from "@/lib/models/AboutPage";
 import Category from "@/lib/models/Category";
 import { getSingleton } from "@/lib/utils/singleton";
 import { serialize } from "./serialize";
+import { DEFAULT_THEME } from "@/lib/theme-presets";
 import type {
   CategoryLean,
   SiteSettingsLean,
@@ -14,18 +15,22 @@ import type {
 
 export async function getSiteSettings() {
   await dbConnect();
-  const doc = await getSingleton(SiteSettings);
-  return serialize<SiteSettingsLean>(
-    doc ?? {
-      siteName: "Untitled Studio",
-      tagline: "",
-      logo: { url: "", publicId: "" },
-      favicon: { url: "", publicId: "" },
-      contactEmail: "",
-      socials: [],
-      footerNote: "",
-    }
-  );
+  const doc = await getSingleton<Partial<SiteSettingsLean>>(SiteSettings);
+  // .lean() reads a document exactly as stored — a SiteSettings doc saved
+  // before the `theme` field existed won't have it, and Mongoose schema
+  // defaults don't retroactively backfill existing documents. Merge it in
+  // explicitly so callers can always rely on settings.theme being present.
+  return serialize<SiteSettingsLean>({
+    siteName: "Untitled Studio",
+    tagline: "",
+    logo: { url: "", publicId: "" },
+    favicon: { url: "", publicId: "" },
+    contactEmail: "",
+    socials: [],
+    footerNote: "",
+    ...doc,
+    theme: doc?.theme ?? DEFAULT_THEME,
+  });
 }
 
 export async function getHomePage() {

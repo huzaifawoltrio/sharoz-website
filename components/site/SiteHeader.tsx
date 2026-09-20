@@ -38,19 +38,19 @@ function Dropdown({
         className={`flex items-center gap-1 py-2 text-sm transition-colors ${
           light
             ? "text-white/95 drop-shadow hover:text-white"
-            : "text-stone-700 hover:text-stone-950"
+            : "text-foreground hover:text-accent"
         }`}
       >
         {label}
         {categories.length > 0 && <ChevronDown className="h-3 w-3" />}
       </Link>
       {open && categories.length > 0 && (
-        <div className="absolute left-0 top-full min-w-40 border border-stone-200 bg-white py-2 shadow-lg">
+        <div className="absolute left-0 top-full min-w-40 border border-border bg-background py-2 shadow-lg">
           {categories.map((c) => (
             <Link
               key={c._id}
               href={`${basePath}?category=${c.slug}`}
-              className="block px-4 py-1.5 text-sm text-stone-600 hover:bg-stone-50 hover:text-stone-950"
+              className="block px-4 py-1.5 text-sm text-muted hover:bg-surface hover:text-foreground"
             >
               {c.name}
             </Link>
@@ -81,7 +81,7 @@ export default function SiteHeader({
 
   const linkClass = transparent
     ? "py-2 text-sm text-white/95 drop-shadow transition-colors hover:text-white"
-    : "py-2 text-sm text-stone-700 transition-colors hover:text-stone-950";
+    : "py-2 text-sm text-foreground transition-colors hover:text-accent";
 
   const navLinks = (
     <>
@@ -114,7 +114,7 @@ export default function SiteHeader({
       className={
         transparent
           ? "absolute inset-x-0 top-0 z-40 bg-transparent"
-          : "sticky top-0 z-40 border-b border-stone-200 bg-white/95 backdrop-blur"
+          : "sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur"
       }
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
@@ -124,7 +124,7 @@ export default function SiteHeader({
           ) : (
             <span
               className={`font-[family-name:var(--font-display)] text-xl ${
-                transparent ? "text-white drop-shadow" : "text-stone-900"
+                transparent ? "text-white drop-shadow" : "text-foreground"
               }`}
             >
               {siteName}
@@ -137,10 +137,10 @@ export default function SiteHeader({
         <div className="flex items-center gap-4">
           <Link href="/cart" className="relative">
             <ShoppingBag
-              className={`h-5 w-5 ${transparent ? "text-white drop-shadow" : "text-stone-700"}`}
+              className={`h-5 w-5 ${transparent ? "text-white drop-shadow" : "text-foreground"}`}
             />
             {itemCount > 0 && (
-              <span className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-stone-900 text-[10px] text-white">
+              <span className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-accent text-[10px] text-accent-foreground">
                 {itemCount}
               </span>
             )}
@@ -151,9 +151,9 @@ export default function SiteHeader({
             aria-label="Toggle menu"
           >
             {mobileOpen ? (
-              <X className={`h-5 w-5 ${transparent ? "text-white drop-shadow" : ""}`} />
+              <X className={`h-5 w-5 ${transparent ? "text-white drop-shadow" : "text-foreground"}`} />
             ) : (
-              <Menu className={`h-5 w-5 ${transparent ? "text-white drop-shadow" : ""}`} />
+              <Menu className={`h-5 w-5 ${transparent ? "text-white drop-shadow" : "text-foreground"}`} />
             )}
           </button>
         </div>
@@ -164,7 +164,7 @@ export default function SiteHeader({
           className={`flex flex-col gap-1 px-6 py-4 sm:hidden ${
             transparent
               ? "bg-black/70 backdrop-blur"
-              : "border-t border-stone-200"
+              : "border-t border-border"
           }`}
         >
           {navLinks}

@@ -18,7 +18,7 @@ export default async function PaintingsPage({
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-16">
-      <h1 className="font-[family-name:var(--font-display)] text-3xl text-stone-800">
+      <h1 className="font-[family-name:var(--font-display)] text-3xl text-foreground">
         Paintings
       </h1>
 
@@ -26,7 +26,7 @@ export default async function PaintingsPage({
         <div className="mt-4 flex flex-wrap gap-4 text-sm">
           <Link
             href="/paintings"
-            className={!categorySlug ? "font-medium text-stone-900" : "text-stone-500"}
+            className={!categorySlug ? "font-medium text-foreground" : "text-muted"}
           >
             All
           </Link>
@@ -35,7 +35,7 @@ export default async function PaintingsPage({
               key={c._id}
               href={`/paintings?category=${c.slug}`}
               className={
-                categorySlug === c.slug ? "font-medium text-stone-900" : "text-stone-500"
+                categorySlug === c.slug ? "font-medium text-foreground" : "text-muted"
               }
             >
               {c.name}
@@ -45,7 +45,7 @@ export default async function PaintingsPage({
       )}
 
       {artworks.length === 0 ? (
-        <p className="mt-12 text-stone-500">No paintings yet — check back soon.</p>
+        <p className="mt-12 text-muted">No paintings yet — check back soon.</p>
       ) : (
         <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {artworks.map((a) => (

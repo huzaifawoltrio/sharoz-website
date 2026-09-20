@@ -1,5 +1,6 @@
 import SiteHeader from "@/components/site/SiteHeader";
 import SiteFooter from "@/components/site/SiteFooter";
+import ThemeStyle from "@/components/site/ThemeStyle";
 import { getSiteSettings, getCategories } from "@/lib/data/site";
 
 export const dynamic = "force-dynamic";
@@ -17,6 +18,7 @@ export default async function SiteLayout({
 
   return (
     <>
+      <ThemeStyle paletteId={settings.theme.paletteId} fonts={settings.theme.fonts} />
       <SiteHeader
         siteName={settings.siteName}
         logoUrl={settings.logo?.url}

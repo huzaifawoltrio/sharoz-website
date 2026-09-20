@@ -22,12 +22,12 @@ export default function CheckoutPage() {
   if (items.length === 0) {
     return (
       <div className="mx-auto max-w-xl px-6 py-24 text-center">
-        <h1 className="font-[family-name:var(--font-display)] text-3xl text-stone-800">
+        <h1 className="font-[family-name:var(--font-display)] text-3xl text-foreground">
           Your cart is empty
         </h1>
         <Link
           href="/shop"
-          className="mt-6 inline-block rounded bg-stone-900 px-6 py-3 text-sm font-medium text-white hover:bg-stone-800"
+          className="mt-6 inline-block rounded bg-accent px-6 py-3 text-sm font-medium text-accent-foreground hover:bg-accent/90"
         >
           Browse the Shop
         </Link>
@@ -51,10 +51,10 @@ export default function CheckoutPage() {
   return (
     <div className="mx-auto grid max-w-4xl grid-cols-1 gap-10 px-6 py-16 sm:grid-cols-2">
       <form action={action} className="flex flex-col gap-4">
-        <h1 className="font-[family-name:var(--font-display)] text-2xl text-stone-800">
+        <h1 className="font-[family-name:var(--font-display)] text-2xl text-foreground">
           Checkout
         </h1>
-        <p className="text-sm text-stone-500">
+        <p className="text-sm text-muted">
           No payment is collected online — submit your details and we&apos;ll follow up
           to arrange payment and shipping.
         </p>
@@ -63,7 +63,7 @@ export default function CheckoutPage() {
 
         {(["name", "email", "phone", "address"] as const).map((field) => (
           <div key={field}>
-            <label className="mb-1 block text-sm font-medium capitalize text-stone-700">
+            <label className="mb-1 block text-sm font-medium capitalize text-foreground">
               {field}
             </label>
             <input
@@ -71,34 +71,34 @@ export default function CheckoutPage() {
               value={buyer[field]}
               onChange={(e) => setBuyer((b) => ({ ...b, [field]: e.target.value }))}
               required={field === "name" || field === "email"}
-              className="w-full rounded border border-stone-300 px-3 py-2 text-sm"
+              className="w-full rounded border border-border px-3 py-2 text-sm"
             />
           </div>
         ))}
         <div>
-          <label className="mb-1 block text-sm font-medium text-stone-700">
+          <label className="mb-1 block text-sm font-medium text-foreground">
             Message (optional)
           </label>
           <textarea
             value={buyer.message}
             onChange={(e) => setBuyer((b) => ({ ...b, message: e.target.value }))}
             rows={3}
-            className="w-full rounded border border-stone-300 px-3 py-2 text-sm"
+            className="w-full rounded border border-border px-3 py-2 text-sm"
           />
         </div>
 
         {state?.error && <p className="text-sm text-red-600">{state.error}</p>}
-        <SubmitButton>Submit Inquiry</SubmitButton>
+        <SubmitButton variant="accent">Submit Inquiry</SubmitButton>
       </form>
 
       <div>
-        <h2 className="mb-4 text-lg font-medium text-stone-800">Order Summary</h2>
-        <ul className="divide-y divide-stone-200">
+        <h2 className="mb-4 text-lg font-medium text-foreground">Order Summary</h2>
+        <ul className="divide-y divide-border">
           {items.map((item) => (
             <li key={item.artworkId + item.variant.type} className="flex justify-between py-3 text-sm">
               <span>
                 {item.title}{" "}
-                <span className="text-stone-500">
+                <span className="text-muted">
                   ({item.variant.type === "print" ? item.variant.size : "original"}) ×{" "}
                   {item.quantity}
                 </span>
@@ -107,7 +107,7 @@ export default function CheckoutPage() {
             </li>
           ))}
         </ul>
-        <div className="mt-4 flex justify-between border-t border-stone-200 pt-4 text-base font-medium text-stone-800">
+        <div className="mt-4 flex justify-between border-t border-border pt-4 text-base font-medium text-foreground">
           <span>Subtotal</span>
           <span>${subtotal.toLocaleString()}</span>
         </div>

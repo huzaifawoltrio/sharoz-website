@@ -24,8 +24,8 @@ export default function PostDetail({ post }: { post: PostLean }) {
           />
         </div>
       )}
-      {date && <p className="text-sm text-stone-500">{date}</p>}
-      <h1 className="mt-2 font-[family-name:var(--font-display)] text-4xl text-stone-800">
+      {date && <p className="text-sm text-muted">{date}</p>}
+      <h1 className="mt-2 font-[family-name:var(--font-display)] text-4xl text-foreground">
         {post.title}
       </h1>
       <RichTextView html={post.bodyHtml} className="mt-8" />

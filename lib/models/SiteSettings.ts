@@ -9,6 +9,17 @@ const SocialLinkSchema = new Schema(
   { _id: false }
 );
 
+const ThemeSchema = new Schema(
+  {
+    paletteId: { type: String, default: "warm-neutral" },
+    fonts: {
+      display: { type: String, default: "Playfair Display" },
+      body: { type: String, default: "Inter" },
+    },
+  },
+  { _id: false }
+);
+
 const SiteSettingsSchema = new Schema(
   {
     siteName: { type: String, default: "Untitled Studio" },
@@ -18,6 +29,7 @@ const SiteSettingsSchema = new Schema(
     contactEmail: { type: String, default: "" },
     socials: { type: [SocialLinkSchema], default: [] },
     footerNote: { type: String, default: "" },
+    theme: { type: ThemeSchema, default: () => ({}) },
   },
   { timestamps: true }
 );

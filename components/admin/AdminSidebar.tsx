@@ -12,12 +12,14 @@ import {
   Mail,
   KeyRound,
   LogOut,
+  Palette,
 } from "lucide-react";
 import { logout } from "@/actions/auth";
 
 const LINKS = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/settings", label: "Site Settings", icon: Settings },
+  { href: "/admin/appearance", label: "Appearance", icon: Palette },
   { href: "/admin/homepage", label: "Homepage", icon: Home },
   { href: "/admin/about", label: "About Page", icon: User },
   { href: "/admin/categories", label: "Categories", icon: Tags },

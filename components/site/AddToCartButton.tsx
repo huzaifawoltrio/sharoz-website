@@ -37,7 +37,7 @@ export default function AddToCartButton({ artwork }: { artwork: ArtworkLean }) {
 
   if (options.length === 0) {
     return (
-      <p className="rounded bg-stone-100 px-4 py-3 text-sm text-stone-600">
+      <p className="rounded bg-surface px-4 py-3 text-sm text-muted">
         This piece isn&apos;t currently available.
       </p>
     );
@@ -65,7 +65,7 @@ export default function AddToCartButton({ artwork }: { artwork: ArtworkLean }) {
         <select
           value={selectedKey}
           onChange={(e) => setSelectedKey(e.target.value)}
-          className="rounded border border-stone-300 px-3 py-2 text-sm"
+          className="rounded border border-border px-3 py-2 text-sm"
         >
           {options.map((o) => (
             <option key={o.key} value={o.key}>
@@ -74,12 +74,12 @@ export default function AddToCartButton({ artwork }: { artwork: ArtworkLean }) {
           ))}
         </select>
       )}
-      <p className="text-xl text-stone-800">${selected.price.toLocaleString()}</p>
+      <p className="text-xl text-foreground">${selected.price.toLocaleString()}</p>
       <div className="flex gap-3">
         <button
           type="button"
           onClick={handleAdd}
-          className="flex-1 rounded bg-stone-900 px-5 py-3 text-sm font-medium text-white hover:bg-stone-800"
+          className="flex-1 rounded bg-accent px-5 py-3 text-sm font-medium text-accent-foreground hover:bg-accent/90"
         >
           {added ? "Added ✓" : "Add to Cart"}
         </button>
@@ -89,7 +89,7 @@ export default function AddToCartButton({ artwork }: { artwork: ArtworkLean }) {
             handleAdd();
             router.push("/cart");
           }}
-          className="flex-1 rounded border border-stone-300 px-5 py-3 text-sm font-medium text-stone-800 hover:bg-stone-100"
+          className="flex-1 rounded border border-border px-5 py-3 text-sm font-medium text-foreground hover:bg-surface"
         >
           Buy Now
         </button>

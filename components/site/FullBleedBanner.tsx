@@ -35,7 +35,7 @@ export default function FullBleedBanner({
         {ctaLabel && ctaHref && (
           <Link
             href={ctaHref}
-            className="mt-8 inline-block rounded bg-stone-900/90 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-stone-900"
+            className="mt-8 inline-block rounded bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition-colors hover:bg-accent/90"
           >
             {ctaLabel}
           </Link>

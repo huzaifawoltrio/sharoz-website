@@ -17,6 +17,7 @@ import AboutPage from "../lib/models/AboutPage";
 import Category from "../lib/models/Category";
 import Artwork from "../lib/models/Artwork";
 import Post from "../lib/models/Post";
+import { DEFAULT_THEME } from "../lib/theme-presets";
 
 async function main() {
   const uri = process.env.MONGODB_URI;
@@ -51,6 +52,7 @@ async function main() {
         { platform: "youtube", url: "https://youtube.com" },
       ],
       footerNote: "",
+      theme: DEFAULT_THEME,
     },
     { upsert: true }
   );

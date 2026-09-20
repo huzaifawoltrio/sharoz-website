@@ -52,6 +52,10 @@ export type SiteSettingsLean = {
   contactEmail: string;
   socials: SocialLink[];
   footerNote: string;
+  theme: {
+    paletteId: string;
+    fonts: { display: string; body: string };
+  };
 };
 
 export type HomePageLean = {

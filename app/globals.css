@@ -4,11 +4,21 @@
 :root {
   --background: #ffffff;
   --foreground: #1c1917;
+  --surface: #f5f5f4;
+  --border: #e7e5e4;
+  --muted: #78716c;
+  --accent: #1c1917;
+  --accent-foreground: #ffffff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
   --font-sans: var(--font-sans);
   --font-display: var(--font-display);
 }
@@ -20,4 +30,21 @@ body {
 
 .prose :where(img):not(:where([class~="not-prose"] *)) {
   border-radius: 0.375rem;
+}
+
+/*
+ * Tailwind Typography's own documented override mechanism — this makes
+ * RichTextView's rendered About/Post/Artwork content follow the active
+ * color theme instead of a fixed prose-stone palette.
+ */
+.prose {
+  --tw-prose-body: var(--foreground);
+  --tw-prose-headings: var(--foreground);
+  --tw-prose-links: var(--accent);
+  --tw-prose-bold: var(--foreground);
+  --tw-prose-bullets: var(--muted);
+  --tw-prose-quotes: var(--foreground);
+  --tw-prose-quote-borders: var(--border);
+  --tw-prose-hr: var(--border);
+  --tw-prose-counters: var(--muted);
 }

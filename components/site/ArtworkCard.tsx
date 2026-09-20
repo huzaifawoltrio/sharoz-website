@@ -22,7 +22,7 @@ export default function ArtworkCard({
   const price = lowestPrice(artwork);
   return (
     <Link href={`${basePath}/${artwork.slug}`} className="group block">
-      <div className="relative aspect-[4/5] overflow-hidden bg-stone-100">
+      <div className="relative aspect-[4/5] overflow-hidden bg-surface">
         <CmsImage
           src={artwork.images[0]?.url}
           alt={artwork.title}
@@ -31,12 +31,12 @@ export default function ArtworkCard({
         />
       </div>
       <div className="mt-3">
-        <h3 className="text-sm font-medium text-stone-800">{artwork.title}</h3>
+        <h3 className="text-sm font-medium text-foreground">{artwork.title}</h3>
         {artwork.medium && (
-          <p className="text-xs text-stone-500">{artwork.medium}</p>
+          <p className="text-xs text-muted">{artwork.medium}</p>
         )}
         {price !== null && (
-          <p className="mt-1 text-sm text-stone-700">from ${price.toLocaleString()}</p>
+          <p className="mt-1 text-sm text-muted">from ${price.toLocaleString()}</p>
         )}
       </div>
     </Link>
