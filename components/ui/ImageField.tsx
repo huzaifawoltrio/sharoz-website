@@ -12,7 +12,11 @@ type ImageFieldProps = {
   label?: string;
   value: ImageValue;
   onChange: (value: ImageValue) => void;
-  /** Crop aspect ratio, e.g. 16/9, 1, 4/5. Omit for free-form cropping. */
+  /**
+   * Recommended crop aspect ratio, e.g. 16/9, 1, 4/5. It is preselected in
+   * the crop modal, where the admin can switch to a preset or custom ratio.
+   * Omit to default to the image's original ratio.
+   */
   aspect?: number;
   /** Cloudinary folder this image should be uploaded into. */
   folder: string;
@@ -77,7 +81,7 @@ export default function ImageField({
             alt=""
             fill
             sizes="400px"
-            className="object-cover"
+            className="object-contain"
           />
         ) : (
           <ImageIcon className="h-8 w-8 text-stone-300" />
@@ -121,7 +125,7 @@ export default function ImageField({
       {pendingSrc && (
         <CropModal
           imageSrc={pendingSrc}
-          aspect={aspect ?? 1}
+          aspect={aspect}
           onCancel={() => setPendingSrc(null)}
           onConfirm={handleCropConfirm}
         />

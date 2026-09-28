@@ -20,6 +20,12 @@ const ThemeSchema = new Schema(
   { _id: false }
 );
 
+const AspectRatioSchema = new Schema({
+  label: { type: String, default: "" },
+  width: { type: Number, required: true },
+  height: { type: Number, required: true },
+});
+
 const SiteSettingsSchema = new Schema(
   {
     siteName: { type: String, default: "Untitled Studio" },
@@ -30,6 +36,7 @@ const SiteSettingsSchema = new Schema(
     socials: { type: [SocialLinkSchema], default: [] },
     footerNote: { type: String, default: "" },
     theme: { type: ThemeSchema, default: () => ({}) },
+    customAspectRatios: { type: [AspectRatioSchema], default: [] },
   },
   { timestamps: true }
 );
