@@ -53,7 +53,6 @@ export default function ArtworkForm({ initial, categories, action }: ArtworkForm
                     images: d.images.map((im, idx) => (idx === i ? image : im)),
                   }))
                 }
-                aspect={4 / 5}
                 folder="artworks"
               />
               <button

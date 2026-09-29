@@ -1,4 +1,4 @@
-import CmsImage from "@/components/ui/CmsImage";
+import ArtworkGallery from "@/components/site/ArtworkGallery";
 import RichTextView from "@/components/ui/RichTextView";
 import AddToCartButton from "@/components/site/AddToCartButton";
 import type { ArtworkLean } from "@/lib/types";
@@ -9,27 +9,8 @@ export default function ArtworkDetail({ artwork }: { artwork: ArtworkLean }) {
     artwork.prints.some((p) => p.stock > 0);
 
   return (
-    <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-16 sm:grid-cols-2">
-      <div className="flex flex-col gap-3">
-        <div className="relative aspect-[4/5] overflow-hidden bg-surface">
-          <CmsImage
-            src={artwork.images[0]?.url}
-            alt={artwork.title}
-            sizes="(max-width: 640px) 100vw, 50vw"
-            className="object-cover"
-            eager
-          />
-        </div>
-        {artwork.images.length > 1 && (
-          <div className="grid grid-cols-4 gap-2">
-            {artwork.images.slice(1).map((img, i) => (
-              <div key={i} className="relative aspect-square overflow-hidden bg-surface">
-                <CmsImage src={img.url} alt="" sizes="120px" className="object-cover" />
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+    <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 py-10 sm:px-6 sm:py-16 lg:grid-cols-[3fr_2fr]">
+      <ArtworkGallery images={artwork.images} title={artwork.title} />
 
       <div>
         <h1 className="font-[family-name:var(--font-display)] text-3xl text-foreground">

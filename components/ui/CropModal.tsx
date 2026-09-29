@@ -99,6 +99,17 @@ export default function CropModal({
     setCroppedAreaPixels(pixels);
   }, []);
 
+  /** Uploads the untouched original file: no crop, no re-encoding. */
+  async function handleUseFullImage() {
+    setSaving(true);
+    try {
+      const blob = await fetch(imageSrc).then((res) => res.blob());
+      onConfirm(blob);
+    } finally {
+      setSaving(false);
+    }
+  }
+
   async function handleConfirm() {
     if (!croppedAreaPixels) return;
     setSaving(true);
@@ -357,7 +368,16 @@ export default function CropModal({
           )}
         </div>
 
-        <div className="flex justify-end gap-2">
+        <div className="flex flex-wrap justify-end gap-2">
+          <button
+            type="button"
+            onClick={handleUseFullImage}
+            disabled={saving}
+            className="mr-auto rounded border border-stone-300 px-4 py-2 text-sm text-stone-700 hover:bg-stone-100 disabled:opacity-50"
+            title="Upload the whole image at its original size and proportions"
+          >
+            Use full image (no crop)
+          </button>
           <button
             type="button"
             onClick={onCancel}
